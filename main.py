@@ -1,5 +1,3 @@
-from tkinter import *
-from tkinter import ttk
 import collections
 import streamlit as st
 
@@ -38,7 +36,7 @@ title.config(font=("Times New Roman", 20), foreground="white", padx=10, pady=10)
 title.pack(pady=(0, 20))
 
 # Bagian Input 
-frameInput = ttk.LabelFrame(window, text="Pilih operasi yang akan digunakan lalu masukkan angka")
+frameInput = st.LabelFrame(window, text="Pilih operasi yang akan digunakan lalu masukkan angka")
 frameInput.pack(padx=10, pady=10)
 
 # Variabel Input 1 
@@ -54,9 +52,9 @@ input2 = StringVar(window)
 input2.set("")
 
 # Frame Input
-entry1 = ttk.Entry(frameInput, textvariable=input1)
+entry1 = st.Entry(frameInput, textvariable=input1)
 entry1.pack(padx=20, pady=20, side=LEFT, anchor=CENTER)
-entry2 = ttk.Entry(frameInput, textvariable=input2)
+entry2 = st.Entry(frameInput, textvariable=input2)
 entry2.pack(padx=20, pady=20, side=LEFT, anchor=CENTER)
 
 # Frame Operasi
@@ -70,10 +68,10 @@ def opt(event):
         input1.set("")
         input2.set("")
     if operand.get() == "-":
-        warning = ttk.Label(frameWarning, text="Masukkan tanda").pack(
+        warning = st.Label(frameWarning, text="Masukkan tanda").pack(
             pady=10, side=BOTTOM)
     if operand.get() == "/" or operand.get() == "*":
-        warning = ttk.Label(frameWarning, text="Masukkan tanda positif (+) atau negatif (-) di setiap angka").pack(
+        warning = st.Label(frameWarning, text="Masukkan tanda positif (+) atau negatif (-) di setiap angka").pack(
             pady=10, side=BOTTOM)
     else:
         for widget in frameWarning.winfo_children():
@@ -81,17 +79,17 @@ def opt(event):
 
 
 # Pilihan Operasi
-option = ttk.OptionMenu(frameInput, operand, "+", "+",
+option = st.OptionMenu(frameInput, operand, "+", "+",
                         "-", "*", "/", "!", "%", "^", "log(2)", "C to K", command=opt)
 option.pack(padx=20, pady=20, side=LEFT, anchor=CENTER)
 
 
 # Frame Warning
-frameWarning = ttk.Frame(window)
+frameWarning = st.Frame(window)
 frameWarning.pack()
 
 # Frame Output
-frameOutput = ttk.LabelFrame(window, text="Hasil", width=600)
+frameOutput = st.LabelFrame(window, text="Hasil", width=600)
 
 # Scrollbar
 v = Scrollbar(frameOutput)
@@ -202,13 +200,13 @@ def caller():
             print("Input halt dan diterima di state : ", state,
                   " dengan hasil: ", elements_count['0'])
             # RESULT | labels
-            ttk.Label(frameResult, text="Hasil : ").pack(pady=10)
-            ttk.Label(frameResult, text=elements_count['0']).pack()
+            st.Label(frameResult, text="Hasil : ").pack(pady=10)
+            st.Label(frameResult, text=elements_count['0']).pack()
         else:
             print("Input tidak diterima di state : ", state)
-            ttk.Label(frameResult, text="Input tidak diterima di state: ").pack(
+            st.Label(frameResult, text="Input tidak diterima di state: ").pack(
                 pady=10)
-            ttk.Label(frameResult, text=state).pack()
+            st.Label(frameResult, text=state).pack()
 
     # Operasi -
     elif operand.get() == "-":
@@ -269,16 +267,16 @@ def caller():
                 print("Input halt dan diterima di state: ", state,
                       " dengan hasil: ", elements_count['0'])
                 # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
+                st.Label(frameResult, text="Result: ").pack(pady=10)
+                st.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
-                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                st.Label(frameResult, text="Input declined on state: ").pack(
                     pady=10)
-                ttk.Label(frameResult, text=state).pack()
+                st.Label(frameResult, text=state).pack()
         else:
             print("Input tidak bisa diproses")
-            ttk.Label(frameResult, text="Input can't be processed").pack(pady=10)
+            st.Label(frameResult, text="Input can't be processed").pack(pady=10)
 
      # Operasi *
     elif operand.get() == "*":
@@ -397,14 +395,14 @@ def caller():
             print("Input halt dan diterima di state: ", state,
                 " dengan hasil: ", operator, elements_count['0'])
             # RESULT | labels
-            ttk.Label(frameResult, text="Result: ").pack(pady=5)
-            ttk.Label(frameResult, text=operator).pack(side=LEFT)
-            ttk.Label(frameResult, text=elements_count['0']).pack()
+            st.Label(frameResult, text="Result: ").pack(pady=5)
+            st.Label(frameResult, text=operator).pack(side=LEFT)
+            st.Label(frameResult, text=elements_count['0']).pack()
         else:
             print("Input tidak diterima di state: ", state)
-            ttk.Label(frameResult, text="Input declined on state: ").pack(
+            st.Label(frameResult, text="Input declined on state: ").pack(
                 pady=10)
-            ttk.Label(frameResult, text=state).pack()
+            st.Label(frameResult, text=state).pack()
 
 
     # OPERASI /
@@ -506,14 +504,14 @@ def caller():
             print("Input halt dan diterima di state: ", state,
                   " dengan hasil: ", elements_count['0'])
             # RESULT | labels
-            ttk.Label(frameResult, text="Result: ").pack(pady=5)
-            ttk.Label(frameResult, text=operator).pack(side=LEFT)
-            ttk.Label(frameResult, text=elements_count['0']).pack()
+            st.Label(frameResult, text="Result: ").pack(pady=5)
+            st.Label(frameResult, text=operator).pack(side=LEFT)
+            st.Label(frameResult, text=elements_count['0']).pack()
         else:
             print("Input tidak diterima di state: ", state)
-            ttk.Label(frameResult, text="Input declined on state: ").pack(
+            st.Label(frameResult, text="Input declined on state: ").pack(
                 pady=10)
-            ttk.Label(frameResult, text=state).pack()
+            st.Label(frameResult, text=state).pack()
 
      # Operasi !
     elif operand.get() == "!":
@@ -650,16 +648,16 @@ def caller():
                 print("Input halt dan diterima di state: ", state,
                       " dengan hasil: ", elements_count['0'])
                 # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
+                st.Label(frameResult, text="Result: ").pack(pady=10)
+                st.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
-                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                st.Label(frameResult, text="Input declined on state: ").pack(
                     pady=10)
-                ttk.Label(frameResult, text=state).pack()
+                st.Label(frameResult, text=state).pack()
         else:
             print("Input tidak bisa diproses")
-            ttk.Label(frameResult, text="Input can't be processed").pack(pady=10)
+            st.Label(frameResult, text="Input can't be processed").pack(pady=10)
 
 
     # Operasi %
@@ -743,16 +741,16 @@ def caller():
                 print("Input halt dan diterima di state: ", state,
                       " dengan hasil: ", elements_count['0'])
                 # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
+                st.Label(frameResult, text="Result: ").pack(pady=10)
+                st.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
-                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                st.Label(frameResult, text="Input declined on state: ").pack(
                     pady=10)
-                ttk.Label(frameResult, text=state).pack()
+                st.Label(frameResult, text=state).pack()
         else:
             print("Input tidak bisa diproses")
-            ttk.Label(frameResult, text="Input can't be processed").pack(pady=10)
+            st.Label(frameResult, text="Input can't be processed").pack(pady=10)
 
    
     # Operasi ^
@@ -917,13 +915,13 @@ def caller():
             print("Input halt dan diterima di state: ", state,
                   " dengan hasil: ", elements_count['0'])
             # RESULT | labels
-            ttk.Label(frameResult, text="Result: ").pack(pady=10)
-            ttk.Label(frameResult, text=elements_count['0']).pack()
+            st.Label(frameResult, text="Result: ").pack(pady=10)
+            st.Label(frameResult, text=elements_count['0']).pack()
         else:
             print("Input tidak diterima di state: ", state)
-            ttk.Label(frameResult, text="Input declined on state: ").pack(
+            st.Label(frameResult, text="Input declined on state: ").pack(
                 pady=10)
-            ttk.Label(frameResult, text=state).pack()
+            st.Label(frameResult, text=state).pack()
 
     # Operasi log(2)
     elif operand.get() == "log(2)":
@@ -1008,16 +1006,16 @@ def caller():
                 print("Input halt dan diterima di state: ", state,
                       " dengan hasil: ", elements_count['0'])
                 # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
+                st.Label(frameResult, text="Result: ").pack(pady=10)
+                st.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
-                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                st.Label(frameResult, text="Input declined on state: ").pack(
                     pady=10)
-                ttk.Label(frameResult, text=state).pack()
+                st.Label(frameResult, text=state).pack()
         else:
             print("Input tidak bisa diproses")
-            ttk.Label(frameResult, text="Input can't be processed").pack(pady=10)
+            st.Label(frameResult, text="Input can't be processed").pack(pady=10)
 
 
     # Operasi Celcius ke Kelvin
@@ -1061,18 +1059,18 @@ def caller():
                 print("Input halt dan diterima di state: ", state,
                     " dengan hasil: ", elements_count['0'])
                 # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
+                st.Label(frameResult, text="Result: ").pack(pady=10)
+                st.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
-                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                st.Label(frameResult, text="Input declined on state: ").pack(
                     pady=10)
-                ttk.Label(frameResult, text=state).pack()
+                st.Label(frameResult, text=state).pack()
 
 
-ttk.Style().configure("TButton", padding=5, relief="flat")
-submit = ttk.Button(frameInput, text="run", command=caller, width=7)
-reset = ttk.Button(frameInput, text="reset", command=restart, width=7)
+st.Style().configure("TButton", padding=5, relief="flat")
+submit = st.Button(frameInput, text="run", command=caller, width=7)
+reset = st.Button(frameInput, text="reset", command=restart, width=7)
 reset.pack(side=RIGHT, anchor=CENTER, padx=10)
 submit.pack(side=RIGHT, anchor=CENTER, padx=10)
 
