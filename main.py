@@ -1,4 +1,3 @@
-import collections
 import streamlit as st
 
 # Restart
