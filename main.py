@@ -653,7 +653,7 @@ def caller():
         int1 = str(input1.get())
         int2 = str(input2.get())
 
-        inputString = int2[0] + temp2 + "d" + int1[0] + temp1 + "d"
+        inputString = int2[0] + temp2 + "1" + int1[0] + temp1 + "1"
         inputLength = len(inputString) * 2
         tape = ['B'] * inputLength
         i = 1
@@ -669,7 +669,7 @@ def caller():
         # Simbol TM
         X, R, L, B = 'X', 'R', 'L', 'B'
         # Simbol Pembagian
-        d = 'd'
+        d = '1'
         increment = 0
         # Perpindahan state
         while(oldHead != head):
@@ -679,65 +679,145 @@ def caller():
                        y2+increment, 0, tape, head)
             increment += 40
             if state == 0:
-                if action('+', B, R, 1) or action('-', B, R, 5):
+                # if action('+', B, R, 1) or action('-', B, R, 5):
+                    # pass
+                if action('0', '0', R, 0) or action(d, d, R, 0) or action('+', '+', R, 0) or action('-', '-', R, 0) or action(B, B, L, 1):
                     pass 
 
             elif state == 1:
-                if action('0', '0', R, 1) or action(d, d, R, 1) or action('+', X, R, 2) or action('-', X, R, 4):
+                # if action('0', '0', R, 1) or action(d, d, R, 1) or action('+', X, R, 2) or action('-', X, R, 4):
+                    # pass
+                if action('0', '0', L, 1) or action(d, d, L, 1) or action('+', '+', L, 1) or action('-', '-', L, 1) or action(B, B, R, 2):
                     pass
 
             elif state == 2:
-                if action('0', '0', R, 2) or action(d, d, R, 2) or action(B, '+', L, 3):
+                # if action('0', '0', R, 2) or action(d, d, R, 2) or action(B, '+', L, 3):
+                    # pass
+                if action('0', B, R, 11) or action('+', B, R, 4) or action('-', B, R, 3) or action(d, d, R, 8):
                     pass
 
             elif state == 3:
-                if action('0', '0', L, 3) or action(d, d, L, 3) or action(X, X, L, 3) or action(B, B, R, 6):
+                # if action('0', '0', L, 3) or action(d, d, L, 3) or action(X, X, L, 3) or action(B, B, R, 6):
+                    # pass
+                if action(d, d, R, 3) or action('0', '0', R, 3) or action('+', B, R, 5) or action('-', B, R, 6):
                     pass
 
             elif state == 4:
-                if action('0', '0', R, 4) or action(d, d, R, 4) or action(B, '-', L, 3):
+                # if action('0', '0', R, 4) or action(d, d, R, 4) or action(B, '-', L, 3):
+                   # pass
+                if action('0', '0', R, 4) or action(d, d, R, 4) or action('+', B, R, 6) or action('-', B, R, 5):
                     pass
 
             elif state == 5:
-                if action('0', '0', R, 5) or action(d, d, R, 5) or action('-', X, R, 2) or action('+', X, R, 4):
+                # if action('0', '0', R, 5) or action(d, d, R, 5) or action('-', X, R, 2) or action('+', X, R, 4):
+                  #  pass
+                if action('0', '0', R, 5) or action(d, d, R, 5) or action(B, '-', L, 7):
                     pass
             
             elif state == 6:
-                if action('0', B, R, 7) or action(d, d, R, 10):
+                # if action('0', B, R, 7) or action(d, d, R, 10):
+                  #  pass
+                if action('0', '0', R, 6) or action(B, '+', L, 7) or action(d, d, R, 6):
                     pass
 
             elif state == 7:
-                if action('0', '0', R, 7) or action(d, d, R, 8):
+                # if action('0', '0', R, 7) or action(d, d, R, 8):
+                  #  pass
+                if action('0', '0', L, 7) or action(d, d, L, 7) or action(B, B, L, 1):
                     pass
 
             elif state == 8:
-                if action('0', X, L, 9) or action(X, X, R, 8) or action(d, B, L, 12):
+                # if action('0', X, L, 9) or action(X, X, R, 8) or action(d, B, L, 12):
+                  #  pass
+                if action('0', '0', R, 8) or action(d, d, R, 8) or action(B, B, R, 8) or action(X, X, R, 8) or action('-', '-', R, 9) or action('+', '+', R, 9):
                     pass
 
             elif state == 9:
-                if action(X, X, L, 9) or action(d, d, L, 9) or action('0', '0', L, 9) or action(B, '0', R, 6):
+                # if action(X, X, L, 9) or action(d, d, L, 9) or action('0', '0', L, 9) or action(B, '0', R, 6):
+                  #  pass
+                if action('0', '0', R, 9) or action(B, '0', L, 10):
                     pass
 
             elif state == 10:
-                if action('0', '0', R, 10) or action(d, d, R, 10) or  action(X, X, R, 10) or  action('-', '-', R, 10) or  action('+', '+', R, 10) or action(B, '0', L, 11):
+                # if action('0', '0', R, 10) or action(d, d, R, 10) or  action(X, X, R, 10) or  action('-', '-', R, 10) or  action('+', '+', R, 10) or action(B, '0', L, 11):
+                  #  pass
+                if action('0', '0', L, 10) or action(d, d, L, 10) or action(B, B, L, 1) or action(X, X, L, 10) or action('-', '-', L, 10) or action('+', '+', L, 10):
                     pass
 
             elif state == 11:
-                if action('0', '0', L, 11) or action(d, d, L, 11) or  action(X, X, L, 11)  or  action('-', '-', L, 11) or  action('+', '+', L, 11) or action(B, B, R, 6):
+                # if action('0', '0', L, 11) or action(d, d, L, 11) or  action(X, X, L, 11)  or  action('-', '-', L, 11) or  action('+', '+', L, 11) or action(B, B, R, 6):
+                  #  pass
+                if action('0', '0', R, 11) or action(d, d, R, 12):
                     pass
 
             elif state == 12:
-                if action(X, B, L, 12) or action(d, B, L, 12) or action('0', B, L, 12) or action(B, B, R, 13):
+                # if action(X, B, L, 12) or action(d, B, L, 12) or action('0', B, L, 12) or action(B, B, R, 13):
+                  #  pass
+                if action('0', X, L, 13) or action(B, B, R, 12) or action(X, X, R, 12) or action(d, d, R, 15):
                     pass
 
             elif state == 13:
+                # if action(X, B, L, 12) or action(d, B, L, 12) or action('0', B, L, 12) or action(B, B, R, 13):
+                  #  pass
+                if action(B, B, L, 14) or action(X, X, L, 13):
+                    pass
+
+            elif state == 14:
+                if action('0', '0', L, 14) or action(B, '0', R, 2) or action(d, d, L, 14):
+                    pass
+        
+            elif state == 15:
+                if action('-', '-', L, 16) or action('+', '+', L, 16):
+                    pass
+        
+            elif state == 16:
+                if action(d, B, L, 17) or action('0', B, L, 18):
+                    pass
+        
+            elif state == 17:
+                # if action(X, B, L, 17) or action(B, B, L, 18):
+                  #  pass
+                # if action(X, B, L, 17) or action(B, B, L, 17) or action(d, B, L, 17) or action('0', B, L, 18):
+                  #  pass
+                if action('0', B, L, 18) or action(X, B, L, 17) or action(B, B, L, 16):
+                    pass
+        
+            elif state == 18:
+                # if action(d, B, L, 18) or action('0', B, L, 18) or action(B, B, L, 18):
+                  #  pass
+                if action('0', B, L, 18) or action(B, B, L, 19):
+                   pass
+        
+            elif state == 19:
                 acc = True
+
+        # Menghitung jumlah 0 pada final state untuk Result
+        elements_count = collections.Counter(tape)
+        if acc:
+            # Mengambil operator pada Final State
+            for tapes in tape:
+                if tapes == '+':
+                    operator = '+'
+                elif tapes == '-':
+                    operator = '-'
+
+            print("Input halt dan diterima di state: ", state,
+                  " dengan hasil: ", elements_count['0'])
+            # RESULT | labels
+            ttk.Label(frameResult, text="Result: ").pack(pady=5)
+            ttk.Label(frameResult, text=operator).pack(side=LEFT)
+            ttk.Label(frameResult, text=elements_count['0']).pack()
+        else:
+            print("Input tidak diterima di state: ", state)
+            ttk.Label(frameResult, text="Input declined on state: ").pack(
+                pady=10)
+            ttk.Label(frameResult, text=state).pack()
 
         
      # Operasi !
     elif operand.get() == "Factorial":
         if temp1 != "":
-            inputString = temp1
+            inputString = temp1 + "1"
             inputLength = len(inputString*3) * 10
             tape = ['B'] * inputLength
             i = 1
@@ -751,7 +831,8 @@ def caller():
             oldHead = -1
             acc = False
             # TM Simbol
-            X, Y, R, L, B = 'X', 'Y', 'R', 'L', 'B'
+            X, R, L, B = 'X', 'R', 'L', 'B'
+            d = 1
             increment = 0
             # Perpindahan state
             while(oldHead != head):
@@ -761,108 +842,117 @@ def caller():
                            y2+increment, 0, tape, head)
                 increment += 40
                 if state == 0:
-                    if action('0', '0', R, 0) or action(B, '1', L, 1):
+                    if action('0', 'X', R, 1) or action('1', '1', R, 3):
                         pass
 
                 elif state == 1:
-                    if action('0', '0', L, 1) or action('1', '1', L, 1) or action(B, B, R, 2):
+                    if action('0', '0', R, 1) or action('1', '1', R, 1) or action(B, '0', L, 2):
                         pass
 
                 elif state == 2:
-                    if action('0', X, R, 3) or action('1', '1', R, 5):
+                    if action('1', '1', L, 2) or action('0', '0', L, 2) or action(X, X, R, 0):
                         pass
 
                 elif state == 3:
-                    if action('0', '0', R, 3) or action('1', '1', R, 3) or action(B, '0', L, 4):
+                    if action('0', '0', R, 3) or action('B', '1', L, 4):
                         pass
 
                 elif state == 4:
-                    if action('0', '0', L, 4) or action('1', '1', L, 4) or action(X, X, R, 2):
+                    if action('0', '0', L, 4) or action('1', '1', L, 4) or action(X, '0', L, 4) or action(B, B, R, 5):
                         pass
 
                 elif state == 5:
-                    if action('0', '0', R, 5) or action(B, '1', L, 7):
+                    if action('0', B, R, 6):
                         pass
 
                 elif state == 6:
-                    if action('0', '0', L, 6) or action('1', '1', L, 6) or action(X, X, L, 6) or action(B, B, R, 16):
+                    if action('1', '1', L, 13) or action('0', X, R, 7):
                         pass
 
                 elif state == 7:
-                    if action('0', '0', L, 7) or action('1', '1', L, 7) or action(X, '0', L, 7) or action(B, B, R, 8):
+                    if action('1', '1', R, 8) or action('0', '0', R, 7):
                         pass
 
                 elif state == 8:
-                    if action('0', B, R, 9):
+                    if action('0', X, R, 9) or action('1', '1', L, 11):
                         pass
 
                 elif state == 9:
-                    if action('0', X, R, 10) or action('1', '1', L, 6):
+                    if action('0', '0', R, 9) or action('1', '1', R, 9) or action(B, '0', L, 10):
                         pass
 
                 elif state == 10:
-                    if action('0', '0', R, 10) or action('1', '1', R, 11):
+                    if action('1', '1', L, 10) or action('0', '0', L, 10) or action(X, X, R, 8):
                         pass
 
                 elif state == 11:
-                    if action('0', X, R, 12) or action('1', '1', L, 14):
+                    if action('1', '1', L, 12) or action(X, '0', L, 11):
                         pass
 
                 elif state == 12:
-                    if action('0', '0', R, 12) or action('1', '1', R, 12) or action(B, '0', L, 13):
+                    if action('0', '0', L, 12) or action('1', '1', L, 12) or action(X, X, R, 6):
                         pass
 
                 elif state == 13:
-                    if action('0', '0', L, 13) or action('1', '1', L, 13) or action(X, X, R, 11):
+                    if action('1', '1', L, 13) or action('0', '0', L, 13) or action(X, X, L, 13) or action(B, B, R, 14):
                         pass
 
                 elif state == 14:
-                    if action(X, '0', L, 14) or action('1', '1', L, 15):
+                    if action(X, B, R, 15) or action('1', B, R, 22):
                         pass
 
                 elif state == 15:
-                    if action('0', '0', L, 15) or action('1', '0', L, 15) or action(X, X, R, 9):
+                    if action(X, X, R, 16) or action('1', B, R, 19):
                         pass
 
                 elif state == 16:
-                    if action(X, B, R, 17) or action('1', B, R, 25):
+                    if action('1', '1', R, 17) or action(X, X, R, 16) or action('0', '0', R, 16):
                         pass
 
                 elif state == 17:
-                    if action('0', B, R, 18) or action('1', B, R, 18) or action(X, X, R, 19) :
+                    if action(X, X, R, 17) or action('1', '1', L, 18) or action('0', '0', R, 17):
                         pass
 
                 elif state == 18:
-                    if action('0', B, R, 18) or action(X, X, R, 22) or action('1', B, L, 24):
+                    if action('0', X, L, 13) or action(X, X, L, 18) or action('1', X, L, 13):
                         pass
 
                 elif state == 19:
-                    if action('0', '0', R, 19) or action(X, X, R, 19) or action('1', '1', R, 20):
+                    if action('1', B, R, 23) or action(X, X, R, 20) or action('0', B, R, 19):
                         pass
 
                 elif state == 20:
-                    if action('0', '0', R, 20) or action(X, X, R, 20) or action('1', '1', L, 21):
+                    if action(X, X, R, 20) or action('0', '0', R, 20) or action('1', '1', R, 20) or action(B, '1', L, 21):
                         pass
 
                 elif state == 21:
-                    if action(X, X, L, 21) or action('0', X, L, 6) or action('1', X, L, 6):
+                    if action(X, '0', R, 21) or action('0', '0', L, 21) or action('1', '1', L, 21) or action(B, B, R, 6):
                         pass
 
                 elif state == 22:
-                    if action('0', '0', R, 22) or action('1', '1', R, 22) or action(X, X, R, 22) or action(B, '1', L, 23):
+                    if action('1', B, R, 22) or action('0', '0', R, 22) or action(B, B, L, 23):
                         pass
 
                 elif state == 23:
-                    if action('0', '0', L, 23) or action('1', '1', L, 23) or action(X, '0', R, 23) or action(B, B, R, 9):
-                        pass
-
-                elif state == 24:
                     acc = True
                     pass
 
-                elif state == 25:
-                    if action('0', '0', R, 25) or action('1', B, R, 25) or action(B, B, L, 24):
-                        pass
+            # Menghitung jumlah 0 pada final state untuk Hasil
+            elements_count = collections.Counter(tape)
+            if acc:
+                print("Input halt dan diterima di state: ", state,
+                      " dengan hasil: ", elements_count['0'])
+                # RESULT | labels
+                ttk.Label(frameResult, text="Result: ").pack(pady=10)
+                ttk.Label(frameResult, text=elements_count['0']).pack()
+            else:
+                print("Input tidak diterima di state: ", state)
+                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                    pady=10)
+                ttk.Label(frameResult, text=state).pack()
+        else:
+            print("Input tidak bisa diproses")
+            ttk.Label(frameResult, text="Input can't be processed").pack(pady=10)
             
 
     # Operasi %
