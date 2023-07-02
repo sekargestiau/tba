@@ -75,7 +75,7 @@ def opt(event):
     if operand.get() == "Substraction":
         warning = ttk.Label(frameWarning, text="Masukkan tanda").pack(
             pady=10, side=BOTTOM)
-    if operand.get() == "Division" or operand.get() == "Multiplication":
+    if operand.get() == "Division" or operand.get() == "Multiplication" or operand.get() == "Addition":
         warning = ttk.Label(frameWarning, text="Masukkan tanda positif (+) atau negatif (-) di setiap angka").pack(
             pady=10, side=BOTTOM)
     else:
