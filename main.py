@@ -298,29 +298,29 @@ def caller():
                     pass
         #Menghitung jumlah 0 pada final state untuk Hasil
             # elements_count = collections.Counter(tape)
-            # if acc:
-            #     # Mengambil tanda negatif atau positif dari final state
-            #     for tapes in tape:
-            #         if tapes == '+':
-            #             operator = '+'
-            #         elif tapes == '-':
-            #             operator = '-'
+            if acc:
+                # Mengambil tanda negatif atau positif dari final state
+                for tapes in tape:
+                    if tapes == '+':
+                        operator = '+'
+                    elif tapes == '-':
+                        operator = '-'
 
-            #     if elements_count['0'] == 0:
-            #         print("Input halt dan diterima di state: ", state,
-            #         " dengan hasil: 0")
+                if elements_count['0'] == 0:
+                    print("Input halt dan diterima di state: ", state,
+                    " dengan hasil: 0")
 
-            #         # RESULT | labels
-            #         ttk.Label(frameResult, text="Result: 0").pack(pady=5)
+                    # RESULT | labels
+                    ttk.Label(frameResult, text="Result: 0").pack(pady=5)
 
-            #     else:
-            #         print("Input halt dan diterima di state: ", state,
-            #         " dengan hasil: ", operator, elements_count['0'])
+                else:
+                    print("Input halt dan diterima di state: ", state,
+                    " dengan hasil: ", operator, elements_count['0'])
 
-            #         # RESULT | labels
-            #         ttk.Label(frameResult, text="Result: ").pack(pady=5)
-            #         ttk.Label(frameResult, text=operator).pack(side=LEFT)
-            #         ttk.Label(frameResult, text=elements_count['0']).pack()
+                    # RESULT | labels
+                    ttk.Label(frameResult, text="Result: ").pack(pady=5)
+                    ttk.Label(frameResult, text=operator).pack(side=LEFT)
+                    ttk.Label(frameResult, text=elements_count['0']).pack()
 
             # else:
             #     print("Input tidak diterima di state: ", state)
