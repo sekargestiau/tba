@@ -1,3 +1,4 @@
+from cgitb import text
 from PIL import Image
 from tkinter import *
 from tkinter import ttk
@@ -79,10 +80,9 @@ def opt(event):
         for widget in frameWarning.winfo_children():
             widget.destroy()
 
-
 # Pilihan Operasi
 # option = ttk.OptionMenu(frameInput, operand, "+", "+","-", "*", "/", "!", "%", "^", "log(2)", "C to K", command=opt)
-option = ttk.OptionMenu(frameInput, operand, "Addition", "Substraction",
+option = ttk.OptionMenu(frameInput, operand, "Addition", "Addition", "Substraction",
                         "Multiplication", "Division", "Factorial", "Power", "Square Root", "Binary Log", command=opt)
 option.pack(padx=20, pady=20, side=LEFT, anchor=CENTER)
 
@@ -101,7 +101,7 @@ v.pack(side=RIGHT, fill=Y)
 h.pack(side=BOTTOM, fill=X)
 
 # Frame Canvas Output Tabel 
-canvas = Canvas(frameOutput, width=550, height=200,
+canvas = Canvas(frameOutput, width=550, height=400,
                 yscrollcommand=v.set, xscrollcommand=h.set)
 canvas.pack()
 
@@ -307,9 +307,6 @@ def caller():
                     print("Input halt dan diterima di state: ", state,
                     " dengan hasil: 0")
 
-                    # RESULT | labels
-                    ttk.Label(frameResult, text="Result: 0").pack(pady=5)
-
                 else:
                     print("Input halt dan diterima di state: ", state,
                     " dengan hasil: ", operator, elements_count['0'])
@@ -480,17 +477,9 @@ def caller():
                     print("Input halt dan diterima di state: ", state,
                     " dengan hasil: 0")
 
-                    # RESULT | labels
-                    ttk.Label(frameResult, text="Result: 0").pack(pady=5)
-
                 else:
                     print("Input halt dan diterima di state: ", state,
                     " dengan hasil: ", operator, elements_count['0'])
-
-                    # RESULT | labels
-                    ttk.Label(frameResult, text="Result: ").pack(pady=5)
-                    ttk.Label(frameResult, text=operator).pack(side=LEFT)
-                    ttk.Label(frameResult, text=elements_count['0']).pack()
 
             else:
                 print("Input tidak diterima di state: ", state)
@@ -498,9 +487,7 @@ def caller():
                     pady=10)
                 ttk.Label(frameResult, text=state).pack()
 
-            
-
-    # Operasi MULTIPLICATION SINGLETTRACK
+    # Operasi MULTIPLICATION (*) SINGLETRACK
     elif operand.get() == "Multiplication":
         # Mengambil tanda positif dan negatif
         int1 = str(input1.get())
@@ -633,7 +620,7 @@ def caller():
             elif state == 24:
                     acc = True
 
-    # OPERASI /
+    # Operasi DIVISION (/) SINGLETRACK
     elif operand.get() == "Division":
         # Ambil tanda positif dan negatif dari input
         int1 = str(input1.get())
@@ -789,18 +776,13 @@ def caller():
 
             print("Input halt dan diterima di state: ", state,
                   " dengan hasil: ", elements_count['0'])
-            # RESULT | labels
-            ttk.Label(frameResult, text="Result: ").pack(pady=5)
-            ttk.Label(frameResult, text=operator).pack(side=LEFT)
-            ttk.Label(frameResult, text=elements_count['0']).pack()
         else:
             print("Input tidak diterima di state: ", state)
             ttk.Label(frameResult, text="Input declined on state: ").pack(
                 pady=10)
             ttk.Label(frameResult, text=state).pack()
-
         
-     # Operasi !
+     # Operasi FACTORIAL (!) SINGLETRACK
     elif operand.get() == "Factorial":
         if temp1 != "":
             inputString = temp1 + "1"
@@ -928,9 +910,6 @@ def caller():
             if acc:
                 print("Input halt dan diterima di state: ", state,
                       " dengan hasil: ", elements_count['0'])
-                # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
                 ttk.Label(frameResult, text="Input declined on state: ").pack(
@@ -1045,20 +1024,18 @@ def caller():
             if acc:
                 print("Input halt dan diterima di state: ", state,
                       " dengan hasil: ", elements_count['0'])
-                # RESULT | labels
-                ttk.Label(frameResult, text="Result: ").pack(pady=10)
-                ttk.Label(frameResult, text=elements_count['0']).pack()
             else:
                 print("Input tidak diterima di state: ", state)
                 ttk.Label(frameResult, text="Input declined on state: ").pack(
                     pady=10)
                 ttk.Label(frameResult, text=state).pack()
-           
    
-    # Operasi ^
+    # Operasi POWER (^) SINGLETRACK
     elif operand.get() == "Power":
-        inputString = temp1 
-        inputLength = len(inputString) ** 2
+        # Ambil tanda positif dan negatif dari input
+
+        inputString = temp2 + "C" + temp1 
+        inputLength = len(inputString*3) * 5
         tape = ['B'] * inputLength
         i = 1
         head = 1
@@ -1070,8 +1047,10 @@ def caller():
         state = 0
         oldHead = -1
         acc = False
-        # TM Simbol
-        X, R, L, B, C = 'X', 'R', 'L', 'B', 'C'
+        # Simbol TM
+        X, R, L, B, C, Y = 'X', 'R', 'L', 'B', 'C', 'Y'
+        # Simbol Pembagian
+        d = C
         increment = 0
         # Perpindahan state
         while(oldHead != head):
@@ -1210,8 +1189,6 @@ def caller():
 
             elif state == 32:
                 acc = True
-
-        
 
     # Operasi LOG(2) SINGLETRACK
     elif operand.get() == "Binary Log":
