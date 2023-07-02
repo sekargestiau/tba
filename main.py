@@ -317,17 +317,6 @@ def caller():
                     print("Input halt dan diterima di state: ", state,
                     " dengan hasil: ", operator, elements_count['0'])
 
-                    # RESULT | labels
-                    ttk.Label(frameResult, text="Result: ").pack(pady=5)
-                    ttk.Label(frameResult, text=operator).pack(side=LEFT)
-                    ttk.Label(frameResult, text=elements_count['0']).pack()
-
-            # else:
-            #     print("Input tidak diterima di state: ", state)
-            #     ttk.Label(frameResult, text="Input declined on state: ").pack(
-            #         pady=10)
-            #     ttk.Label(frameResult, text=state).pack()
-
         
     # Operasi -
     elif operand.get() == "Substraction":
