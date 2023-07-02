@@ -4,7 +4,6 @@ from tkinter import ttk
 import collections
 
 # Restart
-
 def restart():
     canvas.delete("all")
     for widget in frameResult.winfo_children():
@@ -12,7 +11,6 @@ def restart():
 
 
 # Turing Machine State
-
 def action(inputSymbol, inputReplace, movement, nextState):
     global head, state, tape
     if tape[head] == inputSymbol:
@@ -32,9 +30,10 @@ window = Tk()
 window.title("Simulator Turing Machine")
 window.geometry('700x850')
 
-title = Label(window, text="Simulator Turing Machine",
+title = Label(window, text="≪•◦ ❈ Simulator Turing Machine ❈ ◦•≫",
               width=700, anchor=N, background="#135589")
-title.config(font=("Courier", 25, "bold"), foreground="#3ddad7", padx=10, pady=10)
+
+title.config(font=("Courier", 20, "bold"), foreground="#3ddad7", padx=10, pady=10)
 title.pack(pady=(0, 20))
 
 # Bagian Input 
@@ -125,10 +124,10 @@ def drawInline(inputLength, x1, x2, y1, y2, counter, tape, head):
     for j in range(inputLength):
         x1 += 20
         x2 += 20
-        box = canvas.create_rectangle(x1, y1, x2+20, y2, fill="white smoke")
+        box = canvas.create_rectangle(x1, y1, x2+20, y2, fill="#cac7cd")
         label = canvas.create_text((x1+x2)/2 + 10, (y1+y2)/2, text=tape[j])
         if head == j:
-            canvas.itemconfig(box, fill="yellow")
+            canvas.itemconfig(box, fill="#3ddad7")
 
         canvas.config(scrollregion=(0, 0, x1+40, y1+40))
         canvas.pack(expand=YES, fill=BOTH)
@@ -515,13 +514,13 @@ def caller():
 
             
 
-     # Operasi MULTIPLICATION SINGLETTRACK
+    # Operasi MULTIPLICATION SINGLETTRACK
     elif operand.get() == "Multiplication":
         # Mengambil tanda positif dan negatif
         int1 = str(input1.get())
         int2 = str(input2.get())
 
-        inputString = int1[0] + temp1 + "m" + int2[0] + temp2 + "m"
+        inputString = int1[0] + temp1 + "1" + int2[0] + temp2 + "1"
         inputLength = len(inputString) * 3
         tape = ['B'] * inputLength
         i = 1
@@ -536,12 +535,14 @@ def caller():
         acc = False
         
         # Simbol TM
-        X, R, L, B= 'X', 'R', 'L', 'B'
+        X, R, L, B,= 'X', 'R', 'L', 'B'
         # Simbol *
-        m = 'm'
+        m = '1'
 
         increment = 0
         # Perpindahan state
+        
+
         while(oldHead != head and head != -1):
             oldHead = head
             print(tape, ", head di index ", head, " pada state ", state)
@@ -549,100 +550,102 @@ def caller():
                        y2+increment, 0, tape, head)
             increment += 40
             if state == 0:
-                if action('-', B, R, 1) or action(m, m, R, 15) or action('+', B, R, 13):
+                if action(B, B, R, 1):
                     pass
 
-            elif state == 1:
-                if action('0', '0', R, 1) or action(m, m, R, 1) or action('+', m, R, 2) or action('-',m, R, 14) or action(B,B,L,17):
+            if state == 1:
+                if action('-', B, R, 2) or action(m, m, R, 16) or action('+', B, R, 14):
                     pass
 
             elif state == 2:
-                if action('0', '0', R, 2) or action(m, m, R, 2) or action(B, '-', L, 3):
+                if action('0', '0', R, 2) or action(m, m, R, 2) or action('+', m, R, 3) or action('-', m, R, 15) or action(B, B, L, 18):
                     pass
 
             elif state == 3:
-                if action('0', '0', L, 3) or action(m, m, L, 3) or action(B, B, R, 4):
+                if action('0', '0', R, 3) or action(m, m, R, 3) or action(B, '-', L, 4):
                     pass
 
             elif state == 4:
-                if action('0', B, R, 5) or action(m, B, R, 20):
+                if action('0', '0', L, 4) or action('1', '1', L, 4) or action(B, B, R, 5):
                     pass
 
             elif state == 5:
-                if action('0', '0', R, 5) or action(m, m, R, 6):
+                if action('0', B, R, 6) or action(m, B, R, 21):
                     pass
 
             elif state == 6:
-                if action(m,m, R, 6) or action('0', X, R, 7):
+                if action('0', '0', R, 6) or action(m, m, R, 7):
                     pass
 
             elif state == 7:
-                if action('0', '0', R, 7) or action(m, m, R, 8):
+                if action('0', X, R, 8) or action(m, m, R, 7):
                     pass
 
             elif state == 8:
-                if action('-', '-', R, 8) or action('+', '+', R, 8) or action('0','0',R,8) or action(B,'0',L,9):
+                if action('0', '0', R, 8) or action(m, m, R, 9):
                     pass
 
             elif state == 9:
-                if action('0', '0', L, 9) or action(m, m, L, 10) or action('-','-',L,9) or action('+','+',L,9):
+                if action('0', '0', R, 9) or action('+', "+", R, 9) or action('-', "-", R, 9) or action(B, "0", L, 10):
                     pass
 
             elif state == 10:
-                if action('0', '0', L, 11) or action(X, '0', L, 12):
+                if action('0', '0', L, 10) or action('+', '+', L, 10) or action('-', '-', L, 10) or action(m, m, L, 11):
                     pass
 
             elif state == 11:
-                if action('0', '0', L, 11) or action(X, X, R, 6):
+                if action('0', '0', L, 12) or action(X, '0', L, 13):
                     pass
 
             elif state == 12:
-                if action(X, '0', L, 12) or action('0', '0', L, 12) or action(m,m,L,12) or action(B,B,R,4):
+                if action('0', '0', L, 12) or action(X, X, R, 7):
                     pass
 
             elif state == 13:
-                if action('0', '0', R, 13) or action(m, m, R, 13) or action(B,B,L,17) or action('+',m,R,14):
+                if action(X, '0', L, 13) or action('0', '0', L, 13) or action(m, m, L, 13) or action(B, B, R, 5):
                     pass
 
             elif state == 14:
-                if action('0', '0', R, 14) or action(m, m, R, 14) or action(B, '+', L, 3):
+                if action('0', '0', R, 14) or action(m, m, R, 14) or action('-', m, R, 3) or action(B, B, L, 18) or action('+', m, R, 15):
                     pass
 
             elif state == 15:
-                if action('0', '0', R, 15) or action(m, m, R, 16) or action('+','+',R,15) or action('-','-',R,15):
+                if action('0', '0', R, 15) or action(m, m, R, 15) or action(B, '+', L, 4):
                     pass
 
             elif state == 16:
-                if action(m, m, R, 16) or action(B, B, L, 17):
+                if action('0', '0', R, 16) or action('+', '+', R, 16) or action('-', '-', R, 16) or action(m, m, R, 17):
                     pass
-            
+
             elif state == 17:
-                if action(m, m, L, 17) or action(B, B, R, 18) or action('+', '+', L, 17) or action('-', '-', L, 17):
+                if action(m, m, R, 17) or action(B, B, L, 18):
                     pass
             
             elif state == 18:
-                if action(m, B, R, 18) or action(B, m, R, 19) or action('+', B, R, 18) or action('-',B, R, 18) or action('0',B,R,18):
+                if action('0', '0', L, 18) or action(m, m, L, 18) or action('+', '+', L, 18) or action('-', '-', L, 18) or action(B, B, R, 19):
                     pass
             
             elif state == 19:
-                acc = True
-            
-            elif state == 20:
-                if action(m, m, L, 17) or action(B, B, R, 18) or action('+', '+', L, 17) or action('-', '-', L, 17):
-                    pass
-            
-            elif state == 21:
-                if action(m, B, R, 22) or action('0', B, R, 21):
-                    pass
-            
-            elif state == 22:
-                if action(B, m, L, 23) or action('+', '+', R, 23) or action('-', '-', R, 23) or action('0', '0', R, 23):
+                if action('0', B, R, 19) or action(m, B, R, 19) or action('+', B, R, 19) or action('-', B, R, 19) or action(B, 1, L, 20):
                     pass
 
-            elif state == 23:
+            elif state == 20:
                     acc = True
 
-        
+            elif state == 21:
+                if action(m, B, R, 22):
+                    pass    
+
+            elif state == 22:
+                if action('0', B, R, 22) or action(m, B, R, 23):
+                    pass     
+
+            elif state == 23:
+                if action('0', '0', R, 23) or action('+', '+', R, 23) or action('-', '-', R, 23) or action('B', B, L, 24):
+                    pass 
+
+            elif state == 24:
+                    acc = True
 
     # OPERASI /
     elif operand.get() == "Division":
