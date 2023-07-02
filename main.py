@@ -66,7 +66,7 @@ frameInput.pack(padx=10, pady=10)
 # Frame Operasi
 def opt(event):
     global warning
-    if operand.get() == "Binary Log" or operand.get() == "!" or operand.get() == "C to K":
+    if operand.get() == "Binary Log" or operand.get() == "!" or operand.get() == "Square Root":
         entry2.pack_forget()
         input2.set(0)
     else:
@@ -138,8 +138,8 @@ def drawInline(inputLength, x1, x2, y1, y2, counter, tape, head):
 # TURING MACHINE
 
 def caller():
-    global temp1, temp2, head, state, tape, cells
-    temp1, temp2 = "", ""
+    global temp1, temp2, temp3, head, state, tape, cells
+    temp1, temp2, temp3 = "", "", ""
 
     # Convert Input dari GUI ke CLI
     for i in range(abs(int(input1.get()))):
@@ -330,7 +330,7 @@ def caller():
                 ttk.Label(frameResult, text=state).pack()
 
         
-    # Operasi -
+    # SUBSTRACTION SINGLETRACK
     elif operand.get() == "Substraction":
             int1 = str(input1.get())
             int2 = str(input2.get())
@@ -862,11 +862,46 @@ def caller():
                         pass
             
 
-    # Operasi %
+    # SQUARE ROOT
     elif operand.get() == "Square Root":
-        if temp1 != "" and temp2 != "":
-            inputString = temp1 + "m" + temp2
-            inputLength = len(inputString) * 2
+        int1 = str(input1.get())
+            if int(input1.get()) == 1:
+                temp2 = '1'
+                temp3 = '0'
+            elif int(input1.get()) >= 2 and int(input1.get()) <=4:
+                temp2 = '1111'
+                temp3 = '00'
+            elif int(input1.get()) >= 5 and int(input1.get()) <=9:
+                temp2 = '111111111'
+                temp3 = '000'
+            elif int(input1.get()) >= 10 and int(input1.get()) <=16:
+                temp2 = '1111111111111111'
+                temp3 = '0000'
+            elif int(input1.get()) >= 17 and int(input1.get()) <=25:
+                temp2 = '1111111111111111111111111'
+                temp3 = '00000'
+            elif int(input1.get()) >= 26 and int(input1.get()) <=36:
+                temp2 = '111111111111111111111111111111111111'
+                temp3 = '00000'
+            elif int(input1.get()) >= 37 and int(input1.get()) <=49:
+                temp2 = '1111111111111111111111111111111111111111111111111'
+                temp3 = '00000'
+            elif int(input1.get()) >= 50 and int(input1.get()) <=64:
+                temp2 = '1111111111111111111111111111111111111111111111111111111111111111'
+                temp3 = '00000'
+            elif int(input1.get()) >= 65 and int(input1.get()) <=81:
+                temp2 = '111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+                temp3 = '00000'
+            elif int(input1.get()) >= 82 and int(input1.get()) <=100:
+                temp2 = '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+                temp3 = '00000'
+            else:
+                print("Input terlalu besar (max input 100)")
+                ttk.Label(frameResult, text="Input terlalu besar (max input 100)").pack(pady=10)
+
+            inputString = temp1 + "M" + temp2 + "N" + temp3
+            
+            inputLength = len(inputString) * 3
             tape = ['B'] * inputLength
             i = 1
             head = 1
@@ -878,10 +913,10 @@ def caller():
             state = 0
             oldHead = -1
             acc = False
+
             # Simbol TM
-            X, Y, R, L, B = 'X', 'Y', 'R', 'L', 'B'
-            # Simbol Modulo
-            m = 'm'
+            R, L, B, X, Y, M, N = 'R', 'L', 'B', 'X', 'Y', 'M', 'N'
+
             increment = 0
             # Perpindahan state
             while(oldHead != head):
@@ -891,51 +926,54 @@ def caller():
                            y2+increment, 0, tape, head)
                 increment += 40
                 if state == 0:
-                    if action('0', '0', R, 0) or action(m, m, R, 1):
+                    if action('0', '0', R, 0) or action('1', '1', R, 0) or action('M', 'M', R, 0) or action('Y', 'Y', L, 1) or action('N', 'N', L, 1):
                         pass
 
                 elif state == 1:
-                    if action('0', '0', R, 1) or action(B, m, L, 2):
+                    if action('1', 'Y', L, 2) or action('Y', 'Y', L, 1):
                         pass
 
                 elif state == 2:
-                    if action(m, m, R, 7) or action('0', X, L, 3):
+                    if action('0', '0', L, 2) or action('1', '1', L, 2) or action('M', 'M', L, 2) or action('X', 'X', R, 3) or action('B', 'B', R, 3):
                         pass
 
                 elif state == 3:
-                    if action('0', '0', L, 3) or action(m, m, L, 4):
+                    if action('0', 'X', R, 8):
                         pass
-
+                
                 elif state == 4:
-                    if action(B, B, R, 8) or action(Y, Y, L, 4) or action('0', Y, R, 5):
+                    if action('1', 'Y', R, 6) or action('Y', 'Y', L, 5):
                         pass
-
+                
                 elif state == 5:
-                    if action(Y, Y, R, 5) or action(m, m, R, 6):
-                        pass
+                    acc = True
 
                 elif state == 6:
-                    if action('0', '0', R, 6) or action(X, X, L, 2):
+                    if action('0', '0', R, 6) or action('1', 'Y', R, 6) or action('B', 'B', L, 7) or action('Y', 'Y', R, 6) or action('N', 'N', R, 6):
                         pass
 
                 elif state == 7:
-                    if action(m, m, L, 2) or action(X, '0', R, 7):
+                    if action('0', 'B', L, 5):
                         pass
 
                 elif state == 8:
-                    if action(Y, B, R, 8) or action(m, B, R, 9):
+                    if action('0', '0', R, 0) or action('M', 'M', R, 4):
                         pass
+        
 
-                elif state == 9:
-                    if action('0', B, R, 9) or action(X, '0', R, 9) or action(m, B, L, 10):
-                        pass
-
-                elif state == 10:
-                    if action('0', B, L, 11):
-                        pass
-
-                elif state == 11:
-                    acc = True
+            #Menghitung jumlah 0 pada final state untuk Hasil
+            elements_count = collections.Counter(tape)
+            if acc:
+                print("Input halt dan diterima di state: ", state,
+                      " dengan hasil: ", elements_count['0'])
+                # RESULT | labels
+                ttk.Label(frameResult, text="Result: ").pack(pady=10)
+                ttk.Label(frameResult, text=elements_count['0']).pack()
+            else:
+                print("Input tidak diterima di state: ", state)
+                ttk.Label(frameResult, text="Input declined on state: ").pack(
+                    pady=10)
+                ttk.Label(frameResult, text=state).pack()
 
            
    
