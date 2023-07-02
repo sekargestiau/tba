@@ -315,7 +315,7 @@ def caller():
                     " dengan hasil: ", operator, elements_count['0'])
 
         
-    # Operasi -
+    # SUBSTRACTION SINGLETRACK
     elif operand.get() == "Substraction":
             int1 = str(input1.get())
             int2 = str(input2.get())
@@ -1293,41 +1293,7 @@ def caller():
 
                 elif state == 13:
                     acc = True
-
-            
-    # Operasi Celcius ke Kelvin
-    elif operand.get() == "C to K":
-        if temp1 != "":
-            inputString = temp1
-            inputLength = len(inputString*3) * 10
-            tape = ['B'] * inputLength
-            i = 1
-            head = 1
-            x1, x2 = 0, 0
-            y1, y2 = 20, 40
-            for char in inputString:
-                tape[i] = char
-                i += 1
-            state = 0
-            oldHead = -1
-            acc = False
-            # TM Simbol
-            X, Y, R, L, B, K = 'X', 'Y', 'R', 'L', 'B', 'K'
-            increment = 0
-            # Perpindahan state
-            while(oldHead != head):
-                oldHead = head
-                print(tape, ", head di index ", head, " pada state ", state)
-                drawInline(inputLength, x1, x2, y1+increment,
-                        y2+increment, 0, tape, head)
-                increment += 40
-                if state == 0:
-                    if action('0', '0', R, 0) or action(B, K, R, 1):
-                        pass
-
-                elif state == 1:
-                        acc = True
-
+                    
             
 
 ttk.Style().configure("TButton", padding=5, relief="flat")
